@@ -306,7 +306,7 @@ html, body {
   <img id="logoImg" style="display:none"/>
 </div>
         <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="loadLogo(event)"/>
-        <div class="company-name" contenteditable="true">YASH MEHTA</div>
+        <div class="company-name" contenteditable="true">YOUR NAME</div>
       </div>
       <div class="inv-title" contenteditable="true">INVOICE</div>
     </div>
@@ -347,22 +347,17 @@ html, body {
   <div class="inv-body">
 
     <!-- BILL FROM / TO -->
-    <div class="bill-grid">
-      <div class="bill-block" id="blockFrom">
-        <div class="bill-label">Bill From <span class="eye" onclick="toggleBlock('blockFrom')">👁</span></div>
-        <textarea class="bill-area" placeholder="Your name&#10;GST No. / Address&#10;Email / Phone">Yash Mehta
-GST: 27XXXXX1234Z5
-Mumbai, Maharashtra
-yashmehtawork@gmail.com</textarea>
-      </div>
-      <div class="bill-block" id="blockTo">
-        <div class="bill-label">Bill To <span class="eye" onclick="toggleBlock('blockTo')">👁</span></div>
-        <textarea class="bill-area" placeholder="Client name&#10;GST No. / Address&#10;Email / Phone">Client Name
-XYZ Pvt. Ltd.
-GST: 27XXXXX5678Z9
-Mumbai, Maharashtra</textarea>
-      </div>
-    </div>
+ <div class="bill-grid">
+  <div class="bill-block" id="blockFrom">
+    <div class="bill-label">Bill From <span class="eye" onclick="toggleBlock('blockFrom')">👁</span></div>
+    <textarea class="bill-area" placeholder="Your Name&#10;GST No. / Address&#10;Email / Phone"></textarea>
+  </div>
+
+  <div class="bill-block" id="blockTo">
+    <div class="bill-label">Bill To <span class="eye" onclick="toggleBlock('blockTo')">👁</span></div>
+    <textarea class="bill-area" placeholder="Client Name&#10;GST No. / Address&#10;Email / Phone"></textarea>
+  </div>
+</div>
 
     <!-- LINE ITEMS -->
     <div class="section-title">Line Items</div>
@@ -383,17 +378,13 @@ Mumbai, Maharashtra</textarea>
     <button class="add-row-btn" onclick="addRow()">+ Add Line Item</button>
 
     <!-- BOTTOM -->
-    <div class="bottom-section">
-      <div class="notes-bank">
-        
-        <div class="opt-block" id="blockBank">
-          <div class="opt-label">Bank Details <span class="eye" onclick="toggleBlock('blockBank')">👁</span></div>
-          <textarea class="opt-area">Bank: KOTAK Bank
-A/C : 7647212766
-IFSC: KKBK0000682
-MICR: 9485159
-UPI: AKI2002MEHTA@HDFCBANK</textarea>
-        </div>
+<div class="bottom-section">
+  <div class="notes-bank">
+
+    <div class="opt-block" id="blockBank">
+      <div class="opt-label">Bank Details <span class="eye" onclick="toggleBlock('blockBank')">👁</span></div>
+      <textarea class="opt-area" placeholder="Bank Name&#10;Account Number&#10;IFSC Code&#10;UPI ID"></textarea>
+    </div>
 <div class="opt-block" id="blockNotes">
           <div class="opt-label">Notes / Terms <span class="eye" onclick="toggleBlock('blockNotes')">👁</span></div>
           <textarea class="opt-area">Thank you for your business!
