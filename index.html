@@ -274,6 +274,107 @@ html, body {
     print-color-adjust: exact !important;
   }
 }
+  @media (max-width: 768px) {
+
+  body{
+    background:#fff;
+  }
+
+  .invoice-wrap{
+    margin:0;
+    padding:0;
+    max-width:100%;
+  }
+
+  .invoice{
+    border-radius:0;
+    box-shadow:none;
+  }
+
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    padding:10px;
+    gap:8px;
+  }
+
+  .toolbar h1{
+    width:100%;
+    font-size:15px;
+  }
+
+  .btn{
+    flex:1;
+    min-height:42px;
+  }
+
+  .inv-header,
+  .inv-body{
+    padding:16px;
+  }
+
+  .inv-header{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .company-name{
+    font-size:26px;
+    white-space:normal;
+    line-height:1.1;
+  }
+
+  .inv-title{
+    font-size:18px;
+  }
+
+  .bill-grid,
+  .bottom-section{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .items-table,
+  .items-table thead,
+  .items-table tbody,
+  .items-table tr,
+  .items-table td{
+    display:block;
+    width:100%;
+  }
+
+  .items-table thead{
+    display:none;
+  }
+
+  .items-table tr{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:12px;
+  }
+
+  .items-table td{
+    border:none;
+    padding:4px 0;
+  }
+
+  .items-table td input{
+    border:1px solid #eee;
+    border-radius:8px;
+    padding:10px;
+  }
+
+  .add-row-btn{
+    width:100%;
+    min-height:44px;
+  }
+
+  .total-grand .val{
+    font-size:20px;
+  }
+}
 </style>
 </head>
 <body>
