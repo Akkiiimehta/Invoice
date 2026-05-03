@@ -274,106 +274,86 @@ html, body {
     print-color-adjust: exact !important;
   }
 }
-  @media (max-width: 768px) {
+ @media (max-width:768px){
 
-  body{
-    background:#fff;
-  }
+.toolbar{
+  position:sticky;
+  top:0;
+  z-index:999;
+  padding:10px;
+  gap:8px;
+}
 
-  .invoice-wrap{
-    margin:0;
-    padding:0;
-    max-width:100%;
-  }
+.toolbar h1{
+  width:100%;
+  font-size:15px;
+}
 
-  .invoice{
-    border-radius:0;
-    box-shadow:none;
-  }
+.btn{
+  min-height:42px;
+}
 
-  .toolbar{
-    position:sticky;
-    top:0;
-    z-index:999;
-    padding:10px;
-    gap:8px;
-  }
+.invoice-wrap{
+  overflow-x:auto;
+  padding:10px;
+}
 
-  .toolbar h1{
-    width:100%;
-    font-size:15px;
-  }
+.invoice{
+  min-width:820px;
+}
 
-  .btn{
-    flex:1;
-    min-height:42px;
-  }
+body{
+  background:#f5f5f0;
+}
 
-  .inv-header,
-  .inv-body{
-    padding:16px;
-  }
+}
+  /* GRID STYLE FOR ITEMS + TOTALS */
 
-  .inv-header{
-    flex-direction:column;
-    gap:14px;
-  }
+.items-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:12px;
+}
 
-  .company-name{
-    font-size:26px;
-    white-space:normal;
-    line-height:1.1;
-  }
+.items-table th{
+  background:var(--accent);
+  color:#fff;
+  padding:10px;
+  border:1px solid var(--accent);
+}
 
-  .inv-title{
-    font-size:18px;
-  }
+.items-table td{
+  border:1px solid #dcdcdc;
+  padding:0;
+}
 
-  .bill-grid,
-  .bottom-section{
-    grid-template-columns:1fr;
-    gap:16px;
-  }
+.items-table td input{
+  padding:10px;
+  background:#fff;
+}
 
-  .items-table,
-  .items-table thead,
-  .items-table tbody,
-  .items-table tr,
-  .items-table td{
-    display:block;
-    width:100%;
-  }
+.items-table tr:nth-child(even) td{
+  background:#fafafa;
+}
 
-  .items-table thead{
-    display:none;
-  }
+/* totals box */
 
-  .items-table tr{
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:10px;
-    margin-bottom:12px;
-  }
+.totals-box{
+  border:1px solid #dcdcdc;
+  border-radius:10px;
+  padding:14px;
+  background:#fff;
+}
 
-  .items-table td{
-    border:none;
-    padding:4px 0;
-  }
+.total-row{
+  padding:10px 0;
+  border-bottom:1px solid #e6e6e6;
+}
 
-  .items-table td input{
-    border:1px solid #eee;
-    border-radius:8px;
-    padding:10px;
-  }
-
-  .add-row-btn{
-    width:100%;
-    min-height:44px;
-  }
-
-  .total-grand .val{
-    font-size:20px;
-  }
+.total-grand{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:2px solid var(--accent);
 }
 </style>
 </head>
