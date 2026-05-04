@@ -891,6 +891,7 @@ input[type="file"]{
 }
 }
 /* ===== PRINT MODE ===== */
+/* ===== PRINT MODE (CLEAN FIX) ===== */
 @media print {
 
   * {
@@ -899,13 +900,13 @@ input[type="file"]{
   }
 
   html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
-    background:#fff;
-    overflow:visible;
+    background: #fff;
+    overflow: visible;
   }
 
+  /* Hide UI elements */
   .toolbar, 
   .add-row-btn, 
   .del-row, 
@@ -914,66 +915,14 @@ input[type="file"]{
     display: none !important;
   }
 
+  /* Prevent breaking inside important sections */
   .bottom-section {
     page-break-inside: avoid;
     break-inside: avoid;
     margin-top: 10px !important;
   }
 
-  .inv-body {
-    padding-bottom: 60px;
-    flex:1 0 auto;
-  }
-
-.sig-section{
-  margin:14px auto 0 !important;
-  position:static !important;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-  .sig-remove{
-    display:none !important;
-  }
-
-  .sig-box{
-    border:none !important;
-    background:transparent !important;
-    height:auto !important;
-    margin:0;
-    padding:0;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-  }
-
-  .sig-box img{
-    display:block !important;
-    max-width:100%;
-    max-height:none;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-  }
-
-  .sig-placeholder{
-    display:none !important;
-  }
-
-.sig-label{
-  width:100%;
-  text-align:center !important;   /* 👈 force center */
-  display:block;
-
-  font-size:13px;
-  letter-spacing:1px;
-
-  border-top:1px solid #999;
-  padding-top:6px;
-  margin-top:8px;
-}
-
+  /* Invoice layout */
   .invoice-wrap {
     margin: 0;
     padding: 0;
@@ -981,31 +930,76 @@ input[type="file"]{
     overflow: visible;
   }
 
-.invoice{
-  box-shadow:none;
-  border-radius:0;
-  width:100%;
-  min-height:100vh;
-  position:relative;   /* 👈 ADD */
-}
-.inv-body{
-  padding-bottom:80px;
-}
+  .invoice{
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+  }
 
- .inv-footer{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  margin:0;
-}
+  /* Signature clean */
+  .sig-section{
+    margin: 14px auto 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .sig-box{
+    border: none !important;
+    background: transparent !important;
+    height: auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .sig-box img{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .sig-placeholder,
+  .sig-remove{
+    display: none !important;
+  }
+
+  .sig-label{
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border-top: 1px solid #999;
+    padding-top: 6px;
+    margin-top: 8px;
+  }
+
+  /* ✅ FOOTER — FIXED TO PAGE */
+  .inv-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+
+    background: var(--accent);
+    color: rgba(255,255,255,.55);
+    text-align: center;
+    padding: 12px;
+    font-size: 10.5px;
+  }
+
+  /* Prevent content overlap with footer */
+  .inv-body{
+    padding-bottom: 110px;
+  }
+
+  /* Clean inputs */
   input, textarea {
     border: none !important;
     background: transparent !important;
     outline: none !important;
   }
-
 }
 </style>
 </head>
