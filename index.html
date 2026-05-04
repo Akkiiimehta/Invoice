@@ -829,6 +829,7 @@ input[type="file"]{
 }
 
 @media (max-width: 480px) {
+
   .toolbar {
     padding: 6px 8px;
     gap: 6px;
@@ -863,9 +864,34 @@ input[type="file"]{
     font-size: 9px;
   }
 
+  /* 🔥 IMPORTANT FIX STARTS HERE */
+
+  html, body {
+    height: 100%;
+  }
+
   .invoice-wrap {
     padding: 8px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
+
+  .invoice {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .inv-body {
+    flex: 1;
+  }
+
+  .inv-footer {
+    margin-top: auto;
+  }
+
+  /* 🔥 FIX ENDS */
 
   .dropdown-menu {
     min-width: 180px;
@@ -879,19 +905,6 @@ input[type="file"]{
   .dropdown-menu a {
     padding: 7px 12px;
     font-size: 11px;
-  }
-  .invoice{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .inv-body{
-    flex: 1;
-  }
-
-  .inv-footer{
-    margin-top: auto;
   }
 }
 /* ===== PRINT MODE ===== */
