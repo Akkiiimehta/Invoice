@@ -474,6 +474,17 @@ textarea.bill-area::-webkit-scrollbar {
   text-align: right; 
 }
 
+.items-table th[contenteditable]:focus,
+.items-table th span[contenteditable]:focus {
+  outline: none;
+  border-bottom: 1.5px dashed rgba(255,255,255,.5);
+}
+
+.meta-table td.lbl[contenteditable]:focus {
+  outline: none;
+  border-bottom: 1.5px dashed var(--accent);
+}
+
 /* 🔥 FORCE FIRST COLUMN SMALL */
 .items-table th:first-child,
 .items-table td:first-child{
@@ -982,8 +993,16 @@ input[type="file"]{
   }
 
   .inv-footer{
-    position:static;
-    margin-top:20px;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    margin-top:0;
+  }
+
+  .inv-body{
+    padding-bottom:70px !important;
   }
 
   input, textarea {
@@ -1089,29 +1108,39 @@ input[type="file"]{
     <table class="meta-table">
       <tbody id="metaBody">
         <tr id="rowInvNo">
-          <td class="lbl">Invoice No.</td>
+          <td class="lbl" contenteditable="true">Invoice No.</td>
           <td class="val" contenteditable="true">#INV-001</td>
           <td class="x"><span class="field-toggle" onclick="toggleRow('rowInvNo')">✕</span></td>
         </tr>
         <tr id="rowGST">
-          <td class="lbl">GST No.</td>
+          <td class="lbl" contenteditable="true">GST No.</td>
           <td class="val" contenteditable="true">27XXXXX0000Z1</td>
           <td class="x"><span class="field-toggle" onclick="toggleRow('rowGST')">✕</span></td>
         </tr>
         <tr id="rowDate">
-          <td class="lbl">Date</td>
+          <td class="lbl" contenteditable="true">Date</td>
           <td class="val" contenteditable="true" id="invDate"></td>
           <td class="x"><span class="field-toggle" onclick="toggleRow('rowDate')">✕</span></td>
         </tr>
         <tr id="rowDue">
-          <td class="lbl">Due Date</td>
+          <td class="lbl" contenteditable="true">Due Date</td>
           <td class="val" contenteditable="true">—</td>
           <td class="x"><span class="field-toggle" onclick="toggleRow('rowDue')">✕</span></td>
         </tr>
         <tr id="rowPO">
-          <td class="lbl">Client Name</td>
+          <td class="lbl" contenteditable="true">Client Name</td>
           <td class="val" contenteditable="true">—</td>
           <td class="x"><span class="field-toggle" onclick="toggleRow('rowPO')">✕</span></td>
+        </tr>
+        <tr id="rowCustom1">
+          <td class="lbl" contenteditable="true">Custom Field</td>
+          <td class="val" contenteditable="true">—</td>
+          <td class="x"><span class="field-toggle" onclick="toggleRow('rowCustom1')">✕</span></td>
+        </tr>
+        <tr id="rowCustom2">
+          <td class="lbl" contenteditable="true">Custom Field</td>
+          <td class="val" contenteditable="true">—</td>
+          <td class="x"><span class="field-toggle" onclick="toggleRow('rowCustom2')">✕</span></td>
         </tr>
       </tbody>
     </table>
@@ -1139,11 +1168,11 @@ input[type="file"]{
       <thead>
         <tr>
           <th style="width:28px; text-align:center;">#</th>
-          <th style="width:40%">Description</th>
-          <th style="width:11%">Qty</th>
-          <th style="width:16%">Rate (<span class="cur">₹</span>)</th>
-          <th style="width:11%">Tax %</th>
-          <th style="width:16%">Amount (<span class="cur">₹</span>)</th>
+          <th style="width:40%" contenteditable="true">Description</th>
+          <th style="width:11%" contenteditable="true">Qty</th>
+          <th style="width:16%"><span contenteditable="true">Rate</span> (<span class="cur">₹</span>)</th>
+          <th style="width:11%" contenteditable="true">Tax %</th>
+          <th style="width:16%"><span contenteditable="true">Amount</span> (<span class="cur">₹</span>)</th>
         </tr>
       </thead>
       <tbody id="itemsBody"></tbody>
@@ -1316,6 +1345,8 @@ Payment due within 15 days of invoice date.</textarea>
     rowDate: 'Date',
     rowDue: 'Due Date', 
     rowPO: 'PO Number',
+    rowCustom1: 'Custom Field',
+    rowCustom2: 'Custom Field',
     blockFrom: 'Bill From', 
     blockTo: 'Bill To',
     blockNotes: 'Notes / Terms', 
@@ -1360,7 +1391,8 @@ Payment due within 15 days of invoice date.</textarea>
     hiddenFields.forEach(id => {
       const btn = document.createElement('button');
       btn.style.cssText = 'display:flex;align-items:center;gap:10px;width:100%;padding:8px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#111;text-align:left;transition:background .15s ease;-webkit-user-select:none;user-select:none;';
-      btn.innerHTML = `<span style="color:#4caf50;font-weight:700;font-size:15px;">+</span> ${fieldLabels[id] || id}`;
+      const liveLbl = document.querySelector('#' + id + ' .lbl')?.textContent?.trim();
+      btn.innerHTML = `<span style="color:#4caf50;font-weight:700;font-size:15px;">+</span> ${liveLbl || fieldLabels[id] || id}`;
       btn.addEventListener('click', () => restoreField(id));
       c.appendChild(btn);
     });
@@ -1537,7 +1569,7 @@ window.addEventListener('load', async () => {
     tr.innerHTML = `
       <td class="row-no">${String(rows.length).padStart(2, '0')}</td>
       <td><textarea class="desc" placeholder="Description"></textarea></td>
-      <td><input type="number" value="1" min="0" class="qty-${id}"/></td>
+      <td><input type="text" value="1" class="qty-${id}"/></td>
       <td><input type="number" value="0" min="0" class="rate-${id}"/></td>
       <td><input type="number" value="0" min="0" max="100" class="tax-${id}"/></td>
       <td style="position:relative;">
